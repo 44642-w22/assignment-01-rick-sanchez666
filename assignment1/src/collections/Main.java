@@ -25,7 +25,9 @@ public class Main {
 		
 		// problem4();
 		
-		problem5();
+		 problem5();
+		
+		
 
 	}
 
@@ -153,7 +155,19 @@ public class Main {
 	
 	private static void problem5() {
 		
-		String inp = "[{}";
+		Scanner scan = new Scanner(System.in);
+
+		System.out.println("Enter the size of the string");
+		int size = scan.nextInt();
+		String inp ="";
+		for(int i=0; i <size; i++) {
+			System.out.print("Enter the character: ");
+			String n = scan.next();
+			inp +=n;
+		}
+		
+		
+		
 
 		Stack<Character> stack = new Stack<>();
 
