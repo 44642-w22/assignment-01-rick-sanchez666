@@ -3,10 +3,12 @@ package collections;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main {
 
@@ -21,7 +23,9 @@ public class Main {
 		
 		// problem3();
 		
-		problem4();
+		// problem4();
+		
+		problem5();
 
 	}
 
@@ -128,9 +132,66 @@ public class Main {
 
 	private static void problem4() {
 		
+		Scanner scan = new Scanner(System.in);
+
+		System.out.println("Enter the size of the list");
+		int size = scan.nextInt();
+		ArrayList<String> list =  new ArrayList<>(size);
+		ArrayList<String> list2 =  new ArrayList<>(size);
+		for(int i=0; i <size; i++) {
+			System.out.print("Enter the string: ");
+			String n = scan.next();
+			list.add(n);
+		}
+		for(String s: list) {
+			list2.add(s);
+		}
+		list2.sort((s1,s2) -> s1.length()-s2.length() );
+		System.out.println(list2);
+		
 	}
 	
 	private static void problem5() {
+		
+		String inp = "[{}";
+
+		Stack<Character> stack = new Stack<>();
+
+		for(int i=0; i< inp.length(); i++) {
+			char c = inp.charAt(i);
+			
+			if(c == '{' || c == '[' || c =='(') {
+				stack.add(c);
+			} else if (c == '}' || c == ']' || c ==')') {
+				
+				char topChar;
+			try {
+				topChar = stack.peek();
+			} catch (EmptyStackException e) {
+				stack.add(c);
+				break;
+			}
+
+			if(topChar == '{' && c == '}') {
+				stack.pop();
+			} else if(topChar == '[' && c == ']') {
+				stack.pop();
+			} else if(topChar == '(' && c == ')') {
+				stack.pop();
+			} else {
+				stack.push(c);
+			}
+			} else {
+				break;
+			}
+			}
+		
+		if(stack.size() == 0) {
+			System.out.println("Balanced expression");
+		} else {
+			System.out.println("Un Balanced :/");
+		}
+
 		
 	}
 	private static void problem6() {
